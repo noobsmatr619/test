@@ -1,0 +1,15 @@
+.row
+  .col-sm-12
+    .box
+      .box-header
+        .col-sm-11
+          %h2.page-header
+            = "Add Order" 
+      .box-body
+        .row
+          .col-sm-4
+            = form_for @order do |f|
+              = render :partial => 'form', :locals => {:f => f}
+              = f.submit "&#10003; #{t(:save)}".html_safe, class: 'btn btn-primary'
+              = link_to t(:cancel), orders_url, class: "btn btn-secondary"
+

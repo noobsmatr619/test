@@ -1,0 +1,9 @@
+.header
+  %h3 Live Boards for
+.container-fluid
+  .col-lg-12
+    .row
+      = render partial: "sell" 
+      = render partial: "buy" 
+  = link_to "View Orders", orders_path, class: "btn btn-success"
+  = link_to "View Users", users_path, class: "btn btn-success"

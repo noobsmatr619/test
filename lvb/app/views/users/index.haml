@@ -1,0 +1,22 @@
+.header
+  %h3 user List 
+.container-fluid
+  .col-lg-12
+    .row
+      %table{class: "table table-bordered table-hover dataTable", "aria-describedby"=>"example2_info"}
+        %thead
+          %tr{role:"row"}
+            %th= t(:name)
+            %th= t(:actions)
+        %tbody{role:"alert", "aria-live"=>"polite", "aria-relevant"=>"all"}
+          - @users.each do |user|
+            %tr{id: "#{user.id}", class: cycle("odd","even")}
+              %td= user.first_name.upcase if user.first_name
+              %td
+                = link_to "Edit", edit_user_path(user), class: "btn btn-primary"
+                = "|" 
+                = link_to "Delete", user_path(user), method: 'delete', data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'  
+  = link_to "Back to home", root_path, class: "btn btn-secondary"
+  = link_to "Add new user", new_user_path, class: "btn btn-success"
+  
+

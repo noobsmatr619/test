@@ -1,0 +1,29 @@
+.header
+  %h3 Order List 
+.container-fluid
+  .col-lg-12
+    .row
+      %table{class: "table table-bordered table-hover dataTable", "aria-describedby"=>"example2_info"}
+        %thead
+          %tr{role:"row"}
+            %th= t(:user_id)
+            %th= t(:order_quantity)
+            %th= t(:price)
+            %th= t(:order_type)
+            %th= t(:actions)
+        %tbody{role:"alert", "aria-live"=>"polite", "aria-relevant"=>"all"}
+          - @orders.each do |order|
+            %tr{id: "#{order.id}", class: cycle("odd","even")}
+              %td= order.user_id
+              %td= order.order_quantity
+              %td= order.price
+              %td= order.order_type.upcase if order.order_type 
+              %td
+                = link_to "Edit", edit_order_path(order), class: "btn btn-primary"
+                = "|" 
+                = link_to "Delete", order_path(order), method: 'delete', data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'  
+  = link_to "Back to home", root_path, class: "btn btn-secondary"
+  = link_to "Add new order", new_order_path, class: "btn btn-success"
+
+  
+

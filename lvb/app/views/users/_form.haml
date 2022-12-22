@@ -1,0 +1,15 @@
+.box.box-primary
+  .box-header
+    .col-xs-12
+      %h2.page-header
+        - if params[:action] == "new" 
+          = "Add Users"
+        -else
+          = "Edit Users"
+
+  .box-body
+    .row
+      .col-sm-12
+        .form-group
+          %label= t(:name)
+          = f.text_field :first_name,required: true, class: "form-control "

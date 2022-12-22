@@ -1,0 +1,20 @@
+.box.box-primary
+  .box-header
+    .col-xs-12
+      %h2.page-header
+        = "Edit Orders"
+  .box-body
+    .row
+      .col-sm-12
+        .form-group
+          %label= "User"
+          = f.select :user_id, User.all.map{|u| [u.first_name, u.id]}, {:include_blank => t(:please_select)},required: true, class: "form-control "
+        .form-group
+          %label{for: "order_quantity"}= "Order Quantity"
+          = f.number_field :order_quantity,required: true, class: "form-control ",  :step => 0.1
+        .form-group
+          %label{for: "price"}= "Price"
+          = f.number_field :price,required: true, class: "form-control ",  :step => 0.1
+        .form-group
+          %label{for: "order_type"}= "order_type"
+          =  f.select :order_type, Order::ORDER_TYPES,  {:include_blank => "- " + "Please Select" + " -"},required: true, class: "form-control"

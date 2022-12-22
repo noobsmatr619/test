@@ -1,0 +1,10 @@
+default: &default
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  adapter: mysql2
+  host: <%= ENV['MYSQL_ROOT_HOST'] %>
+  pool: 5
+
+development:
+  <<: *default
+  database: <%= ENV['MYSQL_DATABASE'] %>

@@ -1,0 +1,21 @@
+.header
+  %h3  Buy
+.container-fluid
+  .col-lg-12
+    .row
+      %table{class: "table table-bordered table-hover dataTable", "aria-describedby"=>"example2_info"}
+        %thead
+          %tr{role:"row"}
+            %th= t(:user_id)
+            %th= t(:order_quantity)
+            %th= t(:price)
+            %th= t(:order_type)
+            -# %th= t(:actions)
+        %tbody{role:"alert", "aria-live"=>"polite", "aria-relevant"=>"all"}
+          -@orders.buy.order_descending_price.group_by(&:price).each do |pr ,o| 
+            %tr{ class: cycle("odd","even")}
+              %td= o.map(&:user_id).join(",")
+              %td= o.map(&:order_quantity).inject(0,:+)
+              %td= pr 
+              %td= o.size > 1 ? "" : o.first.order_type  if o.first.order_type 
+
